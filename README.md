@@ -1,41 +1,44 @@
 
-El siguiente trabajo analiza un hilo de tweets de Elon Musk
+Este proyecto aplica técnicas de Natural Language Processing (NLP) y Deep Learning para analizar y clasificar el sentimiento expresado en tweets. El objetivo principal fue construir una red neuronal recurrente capaz de identificar si un tweet tiene un tono positivo, negativo o neutral.
 
-Link de acceso: https://colab.research.google.com/drive/1fKoZ_c1HGMJxdqY53Rg4Ir0U1bHNgp4E?usp=sharing
+Se partió de un dataset real de tweets relacionados con Elon Musk, el cual fue limpiado, preprocesado y utilizado como base para entrenar modelos secuenciales.
 
-El trabajo se compone por 2 grandes bloques, el primero es sobre PNL y el segundo contiene Deep learning y Red neuronal.
+Link de acceso: https://colab.research.google.com/drive/1fCjYPmd-MG5aHTRiu890QIjw7E2oIadz?usp=sharing
 
-En la primer etapa vemos como esta compuesto el data set, que columnas tiene:
-row ID	Tweet	Time	Retweet from	User 
+Objetivo del Proyecto
+Aplicar técnicas fundamentales de preprocesamiento de texto.
 
-Luego limpiamos los datos y asignamos sentimientos a cada tweet. Sobre eso se agrego un grafico para ver cuantos tweets se hicieron con cada sentimiento (positivo-neutral-negativo) y como fue la evolucion de los sentimientos en el tiempo.
+Implementar una red neuronal recurrente (RNN) con arquitectura LSTM para clasificación de sentimiento.
 
-Ademas de eso, creamos una WordlCloud, para eso aplicamos Lematización.Para ellos se creo un grafico por sentimiento con las palabras mas repetidas. Vale aclarar que hay palabras que se repiten en los 3 sentimientos como "Tesla" donde hace referencia a su marca, no quiere decir que la usa para hacer referencia a algun sentido como tal.
+Comparar una arquitectura básica vs. una versión mejorada con más capas.
 
-Para la segunda etapa de Deep Learning y redes neuronales se probaron ambos metodos, CNN y RNN.
+Evaluar si esta arquitectura es adecuada para el problema.
 
-Concluciones para cada método:
+Pasos del Desarrollo
+Carga y exploración del dataset
+Se analizaron patrones de sentimiento y frecuencia de palabras.
 
-CNN: 
+Preprocesamiento NLP
+Incluyó limpieza de texto, tokenización, stopwords y padding.
 
-El dataset MNIST contiene 60,000 imágenes de entrenamiento y 10,000 de test, balanceado entre 10 clases.
+Codificación de etiquetas
+Las clases de sentimiento fueron convertidas a variables categóricas.
 
-- Las imágenes son en escala de grises, tamaño 28x28 pixeles, con valores normalizados para el entrenamiento.
+Modelo RNN básico
+Se implementó un modelo LSTM sencillo con embedding + una capa LSTM.
 
-- Un modelo sencillo CNN con una sola capa convolucional logró buena precisión (~96%).
+Modelo RNN mejorado
+Se construyó una red más profunda con Bidirectional LSTM, Dropout y capas densas.
 
-- Al agregar capas convolucionales adicionales, una capa densa más grande y Dropout, la precisión mejoró (~98%).
+Evaluación de resultados
+Se compararon métricas de precisión y pérdida en entrenamiento y validación.
 
-- El aumento de capas permite capturar características más complejas, mejorando el rendimiento del modelo.
+esultados
+El modelo simple alcanzó una precisión moderada.
 
-RNN:
+El modelo mejorado superó el 67% de accuracy en validación.
 
--Se entrenó una red neuronal recurrente (RNN) con LSTM para clasificar sentimientos en tweets de Elon Musk. El modelo alcanzó una precisión final del 67.24% sobre el conjunto de validación.
+Se detectó cierto sobreajuste, abriendo el camino para mejorar regularización o usar más datos.
 
--Durante el entrenamiento se observó un comportamiento típico de sobreajuste:
-
--La precisión de entrenamiento (train accuracy) fue alta, pero la precisión de validación (val accuracy) se mantuvo más baja.
-
--La pérdida en validación (val loss) fue mayor que la de entrenamiento y aumentó con las épocas.
-
--Esto indica que el modelo aprendió muy bien los datos de entrenamiento, pero no logra generalizar correctamente a datos nuevos. Se recomienda aplicar estrategias para reducir el sobreajuste, como usar más datos, ajustar hiperparámetros o incorporar regularización adicional.
+Conclusión Técnica
+La red construida pertenece a la familia de redes recurrentes, y aunque los resultados son aceptables, el rendimiento podría beneficiarse de ajustes adicionales. Este tipo de arquitectura es válida para el problema abordado, pero su efectividad depende del volumen de datos y del ajuste del modelo.
